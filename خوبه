@@ -1,0 +1,2663 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="پروژه IRX - انقلاب مالی ایران برای قدرتمند کردن ریال ایران">
+    <meta name="keywords" content="IRX, ارز دیجیتال, اقتصاد ایران, ریال ایران">
+    <title>IRX - انقلاب مالی ایران | قدرتمندترین پول دنیا</title>
+    
+    <!-- فونت Vazirmatn با وزن‌های مختلف -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- آیکون‌های Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- کتابخانه Chart.js برای نمودارها -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- کتابخانه AOS برای انیمیشن‌های اسکرول -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- بهینه‌سازی CSS با متدولوژی BEM -->
+    <style>
+        :root {
+            --primary-color: #FFD700;
+            --secondary-color: #B8860B;
+            --dark-bg: #1a1a1a;
+            --text-color: #ffffff;
+            --hover-color: #FFC000;
+            --shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            --transition: all 0.3s ease;
+            --lead-color: #2F4F4F;
+            --positive-color: #4CAF50;
+            --negative-color: #F44336;
+            --card-bg: rgba(30, 30, 30, 0.8);
+            --section-padding: 4rem;
+            --gold-gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        }
+        
+        /* Reset و پایه‌های سبک */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+        
+        html {
+            font-size: 16px;
+        }
+        
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+            position: relative;
+            min-height: 100vh;
+            overflow-x: hidden;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* سیستم شبکه پیشرفته */
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+        
+        .grid--2cols {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        
+        .grid--3cols {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        
+        .grid--4cols {
+            grid-template-columns: repeat(4, 1fr);
+        }
+        
+        /* سیستم فاصله‌گذاری */
+        .margin-bottom-sm { margin-bottom: 1rem; }
+        .margin-bottom-md { margin-bottom: 2rem; }
+        .margin-bottom-lg { margin-bottom: 3rem; }
+        .margin-bottom-xl { margin-bottom: 4rem; }
+        
+        .padding-sm { padding: 1rem; }
+        .padding-md { padding: 2rem; }
+        .padding-lg { padding: 3rem; }
+        .padding-xl { padding: 4rem; }
+        
+        /* تایپوگرافی پیشرفته */
+        .heading-primary {
+            font-size: 3rem;
+            font-weight: 900;
+            line-height: 1.2;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .heading-secondary {
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.3;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .heading-tertiary {
+            font-size: 1.5rem;
+            font-weight: 600;
+            line-height: 1.4;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .paragraph {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+        }
+        
+        .text-center { text-align: center; }
+        .text-right { text-align: right; }
+        .text-left { text-align: left; }
+        
+        /* دکمه‌های پیشرفته */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        
+        .btn--primary {
+            background: var(--gold-gradient);
+            color: #000;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+        
+        .btn--primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+        }
+        
+        .btn--primary:active {
+            transform: translateY(1px);
+        }
+        
+        .btn--outline {
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+        
+        .btn--outline:hover {
+            background: rgba(255, 215, 0, 0.1);
+        }
+        
+        /* کارت‌های پیشرفته */
+        .card {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(5px);
+            transition: var(--transition);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, rgba(255,215,0,0) 70%);
+            transform: rotate(45deg);
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
+        }
+        
+        .card:hover::before {
+            opacity: 1;
+        }
+        
+        .card__header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .card__icon {
+            width: 3rem;
+            height: 3rem;
+            background: rgba(255, 215, 0, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            flex-shrink: 0;
+        }
+        
+        .card__title {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        /* پس زمینه ستاره‌ای متحرک پیشرفته */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/starfield.png');
+            animation: moveStars 500s linear infinite;
+            z-index: -2;
+            opacity: 0.8;
+        }
+        
+        .stars::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(26,26,26,0) 0%, rgba(26,26,26,1) 100%);
+        }
+        
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        @keyframes moveStars {
+            from { background-position: 0 0; }
+            to { background-position: -10000px 5000px; }
+        }
+        
+        /* هدر سایت پیشرفته */
+        .header {
+            background: var(--gold-gradient);
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+            box-shadow: var(--shadow);
+            z-index: 100;
+            position: fixed;
+            width: 100%;
+            top: 0;
+        }
+        
+        .header__logo {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #000;
+            text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.8);
+            margin-bottom: 0.5rem;
+            transition: var(--transition);
+        }
+        
+        .header__logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .header__subtitle {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            font-weight: 500;
+            opacity: 0.9;
+        }
+        
+        /* منوی همبرگری پیشرفته */
+        .menu-toggle {
+            position: fixed;
+            top: 1.5rem;
+            left: 1.5rem;
+            width: 2.5rem;
+            height: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            z-index: 200;
+            transition: var(--transition);
+            background: rgba(0, 0, 0, 0.5);
+            padding: 0.5rem;
+            border-radius: 0.3rem;
+        }
+        
+        .menu-toggle:hover {
+            transform: scale(1.1);
+            background: rgba(0, 0, 0, 0.7);
+        }
+        
+        .menu-toggle__line {
+            display: block;
+            width: 100%;
+            height: 0.25rem;
+            background-color: var(--primary-color);
+            border-radius: 0.25rem;
+            transition: var(--transition);
+        }
+        
+        .menu-toggle--active .menu-toggle__line:nth-child(1) {
+            transform: translateY(0.75rem) rotate(45deg);
+        }
+        
+        .menu-toggle--active .menu-toggle__line:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .menu-toggle--active .menu-toggle__line:nth-child(3) {
+            transform: translateY(-0.75rem) rotate(-45deg);
+        }
+        
+        /* منوی اصلی پیشرفته */
+        .main-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100%;
+            background-color: rgba(26, 26, 26, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 5rem 1.5rem;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 150;
+            overflow-y: auto;
+            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.7);
+        }
+        
+        .main-menu--active {
+            right: 0;
+        }
+        
+        .main-menu__link {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1.2rem;
+            border-bottom: 1px solid rgba(184, 134, 11, 0.3);
+            transition: var(--transition);
+            border-radius: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .main-menu__link:hover {
+            color: var(--primary-color);
+            background-color: rgba(255, 215, 0, 0.1);
+            padding-right: 1.5rem;
+            transform: translateX(-5px);
+        }
+        
+        .main-menu__icon {
+            margin-left: 0.5rem;
+            width: 1.5rem;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+        
+        /* ساعت آنالوگ و دیجیتال پیشرفته */
+        .clock {
+            position: fixed;
+            top: 1.5rem;
+            left: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            z-index: 50;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 0.8rem;
+            border-radius: 0.8rem;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .clock__analog {
+            width: 5rem;
+            height: 5rem;
+            background-color: rgba(51, 51, 51, 0.8);
+            border-radius: 50%;
+            position: relative;
+            box-shadow: 0 0 15px var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+        
+        .clock__analog::before {
+            content: '';
+            position: absolute;
+            width: 0.5rem;
+            height: 0.5rem;
+            background-color: var(--text-color);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        }
+        
+        .clock__hand {
+            position: absolute;
+            bottom: 50%;
+            left: 50%;
+            transform-origin: 50% 100%;
+            border-radius: 0.5rem;
+            transition: transform 0.5s cubic-bezier(0.4, 2.3, 0.3, 1);
+        }
+        
+        .clock__hand--hour {
+            width: 0.3rem;
+            height: 1.5rem;
+            background-color: var(--text-color);
+            transform: translateX(-50%);
+            z-index: 3;
+        }
+        
+        .clock__hand--minute {
+            width: 0.2rem;
+            height: 2rem;
+            background-color: var(--text-color);
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+        
+        .clock__hand--second {
+            width: 0.1rem;
+            height: 2.5rem;
+            background-color: var(--primary-color);
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+        
+        .clock__digital {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 0.3rem 0.8rem;
+            border-radius: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            color: var(--primary-color);
+        }
+        
+        /* بخش ارزهای دیجیتال پیشرفته */
+        .crypto {
+            position: fixed;
+            top: 10rem;
+            left: 1.5rem;
+            width: 18rem;
+            z-index: 50;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .crypto__widget {
+            background: var(--card-bg);
+            border: 1px solid var(--primary-color);
+            border-radius: 0.8rem;
+            padding: 1rem;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(5px);
+            transition: var(--transition);
+            overflow: hidden;
+        }
+        
+        .crypto__widget:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
+        }
+        
+        .crypto__header {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+            padding-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .crypto__item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.6rem 0;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+        
+        .crypto__item:hover {
+            background: rgba(255, 215, 0, 0.05);
+        }
+        
+        .crypto__item:last-child {
+            border-bottom: none;
+        }
+        
+        .crypto__name {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex: 1;
+        }
+        
+        .crypto__icon {
+            width: 1.5rem;
+            height: 1.5rem;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+        
+        .crypto__price {
+            font-weight: 700;
+            text-align: left;
+            min-width: 6rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            font-size: 0.8rem;
+        }
+        
+        .crypto__change {
+            font-size: 0.7rem;
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.3rem;
+            margin-bottom: 0.2rem;
+            display: inline-block;
+            transition: all 0.5s ease;
+        }
+        
+        .crypto__change--positive {
+            color: var(--positive-color);
+            background-color: rgba(76, 175, 80, 0.2);
+        }
+        
+        .crypto__change--negative {
+            color: var(--negative-color);
+            background-color: rgba(244, 67, 54, 0.2);
+        }
+        
+        .crypto__rial {
+            font-size: 0.7rem;
+            opacity: 0.9;
+            margin-top: 0.1rem;
+            direction: ltr;
+        }
+        
+        /* نمودار قیمت پیشرفته */
+        .chart {
+            height: 150px;
+            margin-top: 0.8rem;
+            position: relative;
+        }
+        
+        .chart__canvas {
+            width: 100% !important;
+            height: 100% !important;
+        }
+        
+        /* محتوای اصلی پیشرفته */
+        .main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            padding-top: 8rem;
+        }
+        
+        .section {
+            margin-bottom: var(--section-padding);
+            position: relative;
+            scroll-margin-top: 6rem;
+        }
+        
+        .section__header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            padding-top: 2rem;
+        }
+        
+        .section__title {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section__title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, transparent, var(--primary-color), transparent);
+        }
+        
+        .section__subtitle {
+            max-width: 700px;
+            margin: 0 auto;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+        }
+        
+        /* ویژگی‌های پیشرفته */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .feature {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            padding: 2rem;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .feature:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow);
+        }
+        
+        .feature__icon {
+            width: 5rem;
+            height: 5rem;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            transition: var(--transition);
+        }
+        
+        .feature:hover .feature__icon {
+            background: rgba(255, 215, 0, 0.2);
+            transform: rotateY(180deg);
+        }
+        
+        .feature__title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        /* جدول قیمت‌های ارز پیشرفته */
+        .table-responsive {
+            overflow-x: auto;
+        }
+        
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            font-size: 0.85rem;
+        }
+        
+        .table th, .table td {
+            padding: 0.6rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .table th {
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--primary-color);
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            font-size: 0.8rem;
+        }
+        
+        .table tr {
+            transition: var(--transition);
+        }
+        
+        .table tr:hover {
+            background: rgba(255, 215, 0, 0.05);
+        }
+        
+        .table__positive {
+            color: var(--positive-color);
+        }
+        
+        .table__negative {
+            color: var(--negative-color);
+        }
+        
+        .table__icon {
+            width: 1.2rem;
+            height: 1.2rem;
+            vertical-align: middle;
+            margin-left: 0.3rem;
+        }
+        
+        /* تیکر اخبار پیشرفته */
+        .news {
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            width: 22rem;
+            max-height: 8rem;
+            background-color: rgba(0, 0, 0, 0.9);
+            border: 1px solid var(--primary-color);
+            border-radius: 0.8rem;
+            padding: 1rem;
+            overflow-y: auto;
+            box-shadow: var(--shadow);
+            z-index: 50;
+            backdrop-filter: blur(5px);
+        }
+        
+        .news__header {
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            position: sticky;
+            top: 0;
+            background: rgba(0, 0, 0, 0.9);
+            padding-bottom: 0.4rem;
+            z-index: 1;
+        }
+        
+        .news__item {
+            padding: 0.6rem 0;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+            animation: fadeIn 0.5s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.9rem;
+        }
+        
+        .news__item:last-child {
+            border-bottom: none;
+        }
+        
+        .news__time {
+            font-size: 0.7rem;
+            color: var(--primary-color);
+            min-width: 3.5rem;
+            background: rgba(255, 215, 0, 0.1);
+            padding: 0.2rem 0.3rem;
+            border-radius: 0.3rem;
+            text-align: center;
+        }
+        
+        /* نقشه راه پیشرفته */
+        .roadmap {
+            position: relative;
+            padding-left: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .roadmap::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0.5rem;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary-color), transparent);
+        }
+        
+        .roadmap__item {
+            position: relative;
+            padding-bottom: 2rem;
+        }
+        
+        .roadmap__item:last-child {
+            padding-bottom: 0;
+        }
+        
+        .roadmap__item::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 0.3rem;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            background: var(--primary-color);
+            box-shadow: 0 0 10px var(--primary-color);
+        }
+        
+        .roadmap__date {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .roadmap__content {
+            background: rgba(30, 30, 30, 0.5);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border-left: 3px solid var(--primary-color);
+        }
+        
+        /* دکمه بازگشت به بالا پیشرفته */
+        .back-to-top {
+            position: fixed;
+            bottom: 5rem;
+            right: 1.5rem;
+            width: 3rem;
+            height: 3rem;
+            background-color: var(--primary-color);
+            color: #000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 50;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+        }
+        
+        .back-to-top--visible {
+            opacity: 0.9;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            opacity: 1;
+            transform: translateY(-5px) scale(1.1);
+        }
+        
+        /* انیمیشن‌ها و افکت‌های پیشرفته */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 215, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0); }
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* پیش‌بارگذاری پیشرفته */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark-bg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+        
+        .preloader--hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .preloader__loader {
+            width: 5rem;
+            height: 5rem;
+            border: 5px solid rgba(255, 215, 0, 0.2);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spin 1s linear infinite;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .preloader__loader::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 5px solid rgba(255, 215, 0, 0.1);
+            border-radius: 50%;
+            border-top-color: var(--secondary-color);
+            animation: spin 1.5s linear infinite reverse;
+        }
+        
+        .preloader__logo {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* فوتر پیشرفته */
+        .footer {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 2rem 0;
+            margin-top: 4rem;
+            position: relative;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--primary-color), transparent);
+        }
+        
+        .footer__content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        .footer__social {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .footer__social-link {
+            color: var(--text-color);
+            font-size: 1.5rem;
+            transition: var(--transition);
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer__social-link:hover {
+            color: var(--primary-color);
+            transform: translateY(-3px) scale(1.1);
+            background: rgba(255, 215, 0, 0.2);
+        }
+        
+        .footer__copyright {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+        
+        /* سیستم نوتیفیکیشن */
+        .notification {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(30, 30, 30, 0.9);
+            border: 1px solid var(--primary-color);
+            border-radius: 0.5rem;
+            padding: 1rem 1.5rem;
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            max-width: 90%;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+        
+        .notification--visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+        
+        .notification--hidden {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(-50%) translateY(20px);
+        }
+        
+        .notification__icon {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+        
+        /* سیستم تب پیشرفته */
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+            margin-bottom: 1.5rem;
+        }
+        
+        .tab {
+            padding: 0.8rem 1.5rem;
+            cursor: pointer;
+            position: relative;
+            color: rgba(255, 255, 255, 0.7);
+            transition: var(--transition);
+        }
+        
+        .tab:hover {
+            color: var(--primary-color);
+        }
+        
+        .tab--active {
+            color: var(--primary-color);
+        }
+        
+        .tab--active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--primary-color);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content--active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        /* سیستم آکاردئون */
+        .accordion {
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+        
+        .accordion__item {
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+        }
+        
+        .accordion__item:last-child {
+            border-bottom: none;
+        }
+        
+        .accordion__header {
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(30, 30, 30, 0.5);
+            transition: var(--transition);
+        }
+        
+        .accordion__header:hover {
+            background: rgba(255, 215, 0, 0.1);
+        }
+        
+        .accordion__title {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .accordion__icon {
+            transition: var(--transition);
+        }
+        
+        .accordion__item--active .accordion__icon {
+            transform: rotate(180deg);
+        }
+        
+        .accordion__content {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        
+        .accordion__item--active .accordion__content {
+            padding: 1rem 1.5rem;
+            max-height: 500px;
+        }
+        
+        /* سیستم مدال پیشرفته */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal--active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal__content {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            padding: 2rem;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            border: 1px solid var(--primary-color);
+            box-shadow: var(--shadow);
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+        
+        .modal--active .modal__content {
+            transform: translateY(0);
+        }
+        
+        .modal__close {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .modal__close:hover {
+            transform: rotate(90deg);
+        }
+        
+        /* سیستم فرم پیشرفته */
+        .form__group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form__label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        .form__control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 0.5rem;
+            color: var(--text-color);
+            font-family: inherit;
+            transition: var(--transition);
+        }
+        
+        .form__control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2);
+        }
+        
+        .form__textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* سیستم پیشرفته اسکلتون برای لودینگ */
+        .skeleton {
+            background: linear-gradient(90deg, rgba(255,255,255,0.05) 25%, rgba(255,215,0,0.1) 50%, rgba(255,255,255,0.05) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 0.5rem;
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        /* سیستم پیشرفته توولتیپ */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .tooltip__text {
+            visibility: hidden;
+            width: 200px;
+            background-color: rgba(0, 0, 0, 0.9);
+            color: #fff;
+            text-align: center;
+            border-radius: 0.5rem;
+            padding: 0.5rem;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: var(--transition);
+            font-size: 0.8rem;
+            border: 1px solid var(--primary-color);
+        }
+        
+        .tooltip:hover .tooltip__text {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        /* سیستم پیشرفته اسکرول بار */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--hover-color);
+        }
+        
+        /* سیستم پیشرفته رسپانسیو */
+        @media (max-width: 1200px) {
+            .crypto {
+                width: 16rem;
+            }
+            
+            .news {
+                width: 20rem;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .main {
+                padding-top: 6rem;
+            }
+            
+            .section__title {
+                font-size: 1.8rem;
+            }
+            
+            .crypto {
+                position: static;
+                width: 100%;
+                max-width: 600px;
+                margin: 0 auto 3rem;
+            }
+            
+            .news {
+                position: static;
+                width: 100%;
+                max-width: 600px;
+                margin: 2rem auto;
+                max-height: none;
+            }
+            
+            .clock {
+                position: static;
+                margin: 1rem auto;
+                width: fit-content;
+            }
+            
+            .back-to-top {
+                right: 50%;
+                transform: translateX(50%);
+                bottom: 9rem;
+            }
+            
+            .grid--4cols {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .section__title {
+                font-size: 1.6rem;
+            }
+            
+            .features {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+            
+            .grid--3cols {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .header__logo {
+                font-size: 2rem;
+            }
+            
+            .header__subtitle {
+                font-size: 0.9rem;
+            }
+            
+            .main-menu {
+                width: 250px;
+            }
+            
+            .main {
+                padding: 1.5rem;
+                padding-top: 5rem;
+            }
+            
+            .section__header {
+                margin-bottom: 2rem;
+            }
+            
+            .section__title {
+                font-size: 1.4rem;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+            
+            .crypto__item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            
+            .crypto__price {
+                width: 100%;
+                align-items: flex-start;
+            }
+            
+            .table th, .table td {
+                padding: 0.8rem;
+                font-size: 0.9rem;
+            }
+            
+            .grid--2cols,
+            .grid--3cols,
+            .grid--4cols {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- پیش‌بارگذاری -->
+    <div class="preloader" id="preloader">
+        <div class="preloader__loader"></div>
+        <div class="preloader__logo">IRX</div>
+    </div>
+    
+    <!-- پس زمینه ستاره‌ای -->
+    <div class="stars"></div>
+    <div class="particles" id="particles-js"></div>
+    
+    <!-- هدر سایت -->
+    <header class="header">
+        <div class="header__logo">IRX</div>
+        <div class="header__subtitle">انقلاب مالی ایران - قدرتمندترین پول دنیا</div>
+    </header>
+    
+    <!-- منوی همبرگری -->
+    <div class="menu-toggle" id="menuToggle">
+        <span class="menu-toggle__line"></span>
+        <span class="menu-toggle__line"></span>
+        <span class="menu-toggle__line"></span>
+    </div>
+    
+    <!-- منوی اصلی -->
+    <nav class="main-menu" id="mainMenu">
+        <a href="#home" class="main-menu__link"><i class="fas fa-home main-menu__icon"></i> خانه</a>
+        <a href="#about" class="main-menu__link"><i class="fas fa-info-circle main-menu__icon"></i> درباره ما</a>
+        <a href="#irx" class="main-menu__link"><i class="fas fa-coins main-menu__icon"></i> پروژه IRX</a>
+        <a href="#features" class="main-menu__link"><i class="fas fa-star main-menu__icon"></i> ویژگی‌ها</a>
+        <a href="#prices" class="main-menu__link"><i class="fas fa-chart-line main-menu__icon"></i> قیمت‌ها</a>
+        <a href="#roadmap" class="main-menu__link"><i class="fas fa-map-marked-alt main-menu__icon"></i> نقشه راه</a>
+        <a href="#team" class="main-menu__link"><i class="fas fa-users main-menu__icon"></i> تیم ما</a>
+        <a href="#contact" class="main-menu__link"><i class="fas fa-envelope main-menu__icon"></i> تماس با ما</a>
+        <a href="#faq" class="main-menu__link"><i class="fas fa-question-circle main-menu__icon"></i> سوالات متداول</a>
+    </nav>
+    
+    <!-- ساعت آنالوگ و دیجیتال -->
+    <div class="clock">
+        <div class="clock__analog">
+            <div class="clock__hand clock__hand--hour" id="hourHand"></div>
+            <div class="clock__hand clock__hand--minute" id="minuteHand"></div>
+            <div class="clock__hand clock__hand--second" id="secondHand"></div>
+        </div>
+        <div class="clock__digital" id="digitalClock"></div>
+    </div>
+    
+    <!-- بخش ارزهای دیجیتال پیشرفته -->
+    <div class="crypto">
+        <!-- ویجت قیمت ارزهای دیجیتال -->
+        <div class="crypto__widget">
+            <h3 class="crypto__header"><i class="fas fa-chart-line"></i> قیمت لحظه‌ای ارزها</h3>
+            
+            <div class="crypto__item">
+                <div class="crypto__name">
+                    <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png" alt="Bitcoin" class="crypto__icon">
+                    <span>بیت‌کوین</span>
+                </div>
+                <div class="crypto__price" id="btcPrice">
+                    <div class="crypto__change" id="btcChange">%0.00</div>
+                    $<span id="btcUsd">0</span>
+                    <div class="crypto__rial" id="btcRial">0 ریال</div>
+                </div>
+            </div>
+            
+            <div class="crypto__item">
+                <div class="crypto__name">
+                    <i class="fas fa-star crypto__icon" style="color: var(--primary-color);"></i>
+                    <span>IRX</span>
+                </div>
+                <div class="crypto__price" style="color: var(--primary-color);">
+                    <div class="crypto__change">در انتظار</div>
+                    $<span id="irxUsd">0</span>
+                    <div class="crypto__rial" id="irxRial">0 ریال</div>
+                </div>
+            </div>
+            
+            <div class="crypto__item">
+                <div class="crypto__name">
+                    <img src="https://cryptologos.cc/logos/ethereum-eth-logo.png" alt="Ethereum" class="crypto__icon">
+                    <span>اتریوم</span>
+                </div>
+                <div class="crypto__price" id="ethPrice">
+                    <div class="crypto__change" id="ethChange">%0.00</div>
+                    $<span id="ethUsd">0</span>
+                    <div class="crypto__rial" id="ethRial">0 ریال</div>
+                </div>
+            </div>
+            
+            <div class="crypto__item">
+                <div class="crypto__name">
+                    <img src="https://cryptologos.cc/logos/litecoin-ltc-logo.png" alt="Litecoin" class="crypto__icon">
+                    <span>لایت‌کوین</span>
+                </div>
+                <div class="crypto__price" id="ltcPrice">
+                    <div class="crypto__change" id="ltcChange">%0.00</div>
+                    $<span id="ltcUsd">0</span>
+                    <div class="crypto__rial" id="ltcRial">0 ریال</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- نمودار قیمت بیت‌کوین -->
+        <div class="crypto__widget">
+            <h3 class="crypto__header"><i class="fas fa-chart-bar"></i> نمودار بیت‌کوین (24h)</h3>
+            <div class="chart">
+                <canvas id="btcChart" class="chart__canvas"></canvas>
+            </div>
+        </div>
+        
+        <!-- نمودار قیمت اتریوم -->
+        <div class="crypto__widget">
+            <h3 class="crypto__header"><i class="fas fa-chart-bar"></i> نمودار اتریوم (24h)</h3>
+            <div class="chart">
+                <canvas id="ethChart" class="chart__canvas"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <!-- محتوای اصلی -->
+    <main class="main">
+        <!-- بخش خانه -->
+        <section id="home" class="section" data-aos="fade-up">
+            <div class="section__header">
+                <h2 class="section__title">پروژه IRX</h2>
+                <p class="section__subtitle">انقلابی در نظام مالی ایران با استفاده از فناوری بلاکچین و ارزهای دیجیتال</p>
+            </div>
+            
+            <div class="card">
+                <div class="card__header">
+                    <div class="card__icon">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                    <h3 class="card__title">به پروژه IRX خوش آمدید</h3>
+                </div>
+                <p class="paragraph">
+                    پروژه IRX یک ابتکار انقلابی در حوزه مالی ایران است که با هدف تقویت و قدرتمند کردن ریال ایران در سطح جهانی طراحی شده است. این پروژه با ترکیب فناوری‌های نوین بلاکچین و سیستم‌های مالی سنتی، به دنبال ایجاد تحولی اساسی در اقتصاد ایران است.
+                </p>
+                <p class="paragraph">
+                    IRX نه تنها یک ارز دیجیتال، بلکه یک اکوسیستم کامل مالی است که می‌تواند به عنوان پلی بین اقتصاد سنتی و دیجیتال عمل کند. این پروژه با بهره‌گیری از آخرین فناوری‌های روز دنیا، امنیت، شفافیت و کارایی را در معاملات مالی به ارمغان می‌آورد.
+                </p>
+                <p class="paragraph" style="color: var(--primary-color); font-weight: 600;">
+                    ریال ایران قراره ارزشمند بشه. ریال ایران قراره به IRX وابسته بشه و در این صورت وقتی IRX ارزشمند بشه ریال هم ارزشمند خواهد شد چون که IRX قراره در صرافی های بزرگ دنیا و بازار های فارکس راه پیدا کنه با پشتوانه قوی.
+                </p>
+            </div>
+        </section>
+        
+        <!-- بخش درباره ما -->
+        <section id="about" class="section" data-aos="fade-up">
+            <div class="section__header">
+                <h2 class="section__title">درباره ما</h2>
+                <p class="section__subtitle">تیم متخصص و با تجربه IRX متعهد به ایجاد تحول در نظام مالی ایران</p>
+            </div>
+            
+            <div class="card">
+                <div class="card__header">
+                    <div class="card__icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="card__title">تیم IRX</h3>
+                </div>
+                <p class="paragraph">
+                    تیم IRX متشکل از متخصصان حوزه‌های مالی، بلاکچین، امنیت سایبری و اقتصاد است که با سال‌ها تجربه در صنعت ارزهای دیجیتال و سیستم‌های بانکی، گرد هم آمده‌اند تا راه‌حلی نوین برای چالش‌های مالی ایران ارائه دهند.
+                </p>
+                <p class="paragraph">
+                    ما معتقدیم که با ترکیب فناوری‌های نوین و درک عمیق از نیازهای مالی ایران، می‌توانیم سیستمی ایجاد کنیم که هم برای کاربران عادی و هم برای کسب‌وکارها مفید باشد.
+                </p>
+            </div>
+        </section>
+        
+        <!-- بخش پروژه IRX -->
+        <section id="irx" class="section" data-aos="fade-up">
+            <div class="section__header">
+                <h2 class="section__title">پروژه IRX</h2>
+                <p class="section__subtitle">جزئیات فنی و معماری پروژه IRX</p>
+            </div>
+            
+            <div class="card">
+                <div class="card__header">
+                    <div class="card__icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 class="card__title">معماری فنی</h3>
+                </div>
+                <p class="paragraph">
+                    پروژه IRX از یک بلاکچین اختصاصی با الگوریتم اجماع پیشرفته استفاده می‌کند که ترکیبی از Proof-of-Stake و Proof-of-Authority است. این ترکیب باعث می‌شود هم سرعت تراکنش‌ها بالا باشد (بیش از 5000 تراکنش در ثانیه) و هم مصرف انرژی به حداقل برسد.
+                </p>
+                <p class="paragraph">
+                    شبکه IRX کاملاً مستقل بوده و از قراردادهای هوشمند پشتیبانی می‌کند. این شبکه قابلیت اجرای برنامه‌های غیرمتمرکز (DApps) و توکن‌های دیجیتال را دارد که می‌توانند برای ایجاد اکوسیستم‌های مالی مختلف مورد استفاده قرار گیرند.
+                </p>
+            </div>
+        </section>
+        
+        <!-- بخش ویژگی‌ها -->
+        <section id="features" class="section" data-aos="fade-up">
+            <div class="section__header">
+                <h2 class="section__title">ویژگی‌های IRX</h2>
+                <p class="section__subtitle">مزایای منحصر به فرد پروژه IRX</p>
+            </div>
+            
+            <div class="features">
+                <div class="feature" data-aos="zoom-in">
+                    <div class="feature__icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h4 class="feature__title">سرعت بالا</h4>
+                    <p>تراکنش‌های فوق‌العاده سریع با تأیید در کمتر از 3 ثانیه</p>
+                </div>
+                
+                <div class="feature" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="feature__icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h4 class="feature__title">امنیت قوی</h4>
+                    <p>الگوریتم‌های رمزنگاری پیشرفته برای محافظت از دارایی‌های شما</p>
+                </div>
+                
+                <div class="feature" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="feature__icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <h4 class="feature__title">کارمزد پایین</h4>
+                    <p>کارمزد تراکنش‌ها تا 100 برابر کمتر از سیستم‌های سنتی</p>
+                </div>
+                
+                <div class="feature" data-aos="zoom-in">
+                    <div class="feature__icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h4 class="feature__title">بین‌المللی</h4>
+                    <p>قابلیت استفاده در سطح جهانی با پشتیبانی از چندین ارز</p>
+                </div>
+                
+                <div class="feature" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="feature__icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4 class="feature__title">مقاوم به تحریم</h4>
+                    <p>طراحی شده برای کار در شرایط تحریم‌های بین‌المللی</p>
+                </div>
+                
+                <div class="feature" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="feature__icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h4 class="feature__title">حریم خصوصی</h4>
+                    <p>حفظ حریم خصوصی کاربران با مکانیزم‌های پیشرفته</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- بخش قیمت‌ها -->
+        <section id="prices" class="section" data-aos="fade-up">
+            <div class="section__header">
+                <h2 class="section__title">قیمت‌های ارزهای دیجیتال</h2>
+                <p class="section__subtitle">آخرین قیمت‌ها و تغییرات بازار ارزهای دیجیتال</p>
+            </div>
+            
+            <div class="card">
+                <div class="card__header">
+                    <div class="card__icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <h3 class="card__title">جدول قیمت‌ها</h3>
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ارز</th>
+                                <th>قیمت (USD)</th>
+                                <th>تغییر (24h)</th>
+                                <th>قیمت (ریال)</th>
+                                <th>حجم بازار</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cryptoTableBody">
+                            <!-- داده‌های قیمت از طریق JavaScript پر می‌شود -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        
+        <!-- بخش نقشه راه -->
+        <section id="roadmap" class="section" data-aos="fade-up">
+            <div class="section__header">
+                <h2 class="section__title">نقشه راه</h2>
+                <p class="section__subtitle">برنامه‌های آینده و مراحل توسعه پروژه IRX</p>
+            </div>
+            
+            <div class="card">
+                <div class="card__header">
+                    <div class="card__icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h3 class="card__title">مراحل توسعه</h3>
+                </div>
+                <div class="roadmap">
+                    <div class="roadmap__item" data-aos="fade-right">
+                        <div class="roadmap__date">فاز ۱ - Q1 2023</div>
+                        <div class="roadmap__content">
+                            <h4>طراحی هسته مرکزی</h4>
+                            <p>توسعه الگوریتم اجماع و معماری پایه بلاکچین</p>
+                        </div>
+                    </div>
+                    
+                    <div class="roadmap__item" data-aos="fade-left">
+                        <div class="roadmap__date">فاز ۲ - Q2 2023</div>
+                        <div class="roadmap__content">
+                            <h4>تست‌های اولیه</h4>
+                            <p>اجرای تست‌های امنیتی و عملکردی روی شبکه آزمایشی</p>
+                        </div>
+                    </div>
+                    
+                    <div class="roadmap__item" data-aos="fade-right">
+                        <div class="roadmap__date">فاز ۳ - Q3 2023</div>
+                        <div class="roadmap__content">
+                            <h4>راه‌اندازی نسخه بتا</h4>
+                            <p>راه‌اندازی شبکه اصلی با کاربران محدود</p>
+                        </div>
+                    </div>
+                    
+                    <div class="roadmap__item" data-aos="fade-left">
+                        <div class="roadmap__date">فاز ۴ - Q4 2023</div>
+                        <div class="roadmap__content">
+                            <h4>راه‌اندازی عمومی</h4>
+                            <p>راه‌اندازی کامل شبکه برای عموم کاربران</p>
+                        </div>
+                    </div>
+                    
+                    <div class="roadmap__item" data-aos="fade-right">
+                        <div class="roadmap__date">فاز ۵ - 2024</div>
+                        <div class="roadmap__content">
+                            <h4>ادغام با سیستم بانکی</h4>
+                            <p>اتصال به سیستم بانکی ایران و ارائه خدمات مالی ترکیبی</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- بخش تیم ما -->
+        <section id="team" class="section" data-aos="fade-up">
+            <div class="section__header">
+                <h2 class="section__title">تیم ما</h2>
+                <p class="section__subtitle">متخصصان و توسعه‌دهندگان پروژه IRX</p>
+            </div>
+            
+            <div class="features">
+                <div class="feature" data-aos="zoom-in">
+                    <div class="feature__icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h4 class="feature__title">مانی معاف</h4>
+                    <p>بنیانگذار و مدیر ارشد فنی</p>
+                    <p>طراح و توسعه‌دهنده اصلی پروژه IRX</p>
+                    <p class="paragraph" style="font-size: 0.9rem; margin-top: 1rem;">
+                        مانی معاف یک تحلیلگر ارزهای دیجیتال است به سبک پرایس اکشن و برنامه نویس و طراح این سایت و پروژه بزرگ IRX و خلق کننده IRX برای ایران.
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- بخش تماس با ما -->
+        <section id="contact" class="section" data-aos="fade-up">
+            <div class="section__header">
+                <h2 class="section__title">تماس با ما</h2>
+                <p class="section__subtitle">برای ارتباط با تیم IRX می‌توانید از راه‌های زیر استفاده کنید</p>
+            </div>
+            
+            <div class="card">
+                <div class="card__header">
+                    <div class="card__icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3 class="card__title">اطلاعات تماس</h3>
+                </div>
+                <p>ایمیل: info@irx-project.ir</p>
+                <p>شبکه‌های اجتماعی: از طریق لینک‌های موجود در فوتر سایت</p>
+            </div>
+        </section>
+        
+        <!-- بخش سوالات متداول -->
+        <section id="faq" class="section" data-aos="fade-up">
+            <div class="section__header">
+                <h2 class="section__title">سوالات متداول</h2>
+                <p class="section__subtitle">پاسخ به پرتکرارترین سوالات درباره پروژه IRX</p>
+            </div>
+            
+            <div class="card">
+                <div class="card__header">
+                    <div class="card__icon">
+                        <i class="fas fa-question-circle"></i>
+                    </div>
+                    <h3 class="card__title">پرسش و پاسخ</h3>
+                </div>
+                <div class="accordion">
+                    <div class="accordion__item">
+                        <div class="accordion__header">
+                            <h4 class="accordion__title">IRX چه تفاوتی با سایر ارزهای دیجیتال دارد؟</h4>
+                            <i class="fas fa-chevron-down accordion__icon"></i>
+                        </div>
+                        <div class="accordion__content">
+                            <p>IRX به طور خاص برای تقویت اقتصاد ایران طراحی شده و با سیستم بانکی کشور ادغام خواهد شد. این پروژه از فناوری‌های پیشرفته‌تر و الگوریتم‌های اجماع کارآمدتری استفاده می‌کند.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion__item">
+                        <div class="accordion__header">
+                            <h4 class="accordion__title">آیا IRX قابل استخراج است؟</h4>
+                            <i class="fas fa-chevron-down accordion__icon"></i>
+                        </div>
+                        <div class="accordion__content">
+                            <p>خیر، IRX بر اساس الگوریتم Proof-of-Stake کار می‌کند و استخراج به روش سنتی ندارد. کاربران می‌توانند با مشارکت در شبکه و نگهداری توکن‌ها، پاداش دریافت کنند.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion__item">
+                        <div class="accordion__header">
+                            <h4 class="accordion__title">چگونه می‌توانم در این پروژه مشارکت کنم؟</h4>
+                            <i class="fas fa-chevron-down accordion__icon"></i>
+                        </div>
+                        <div class="accordion__content">
+                            <p>پس از راه‌اندازی رسمی شبکه، امکان مشارکت از طریق خرید توکن، مشارکت در اعتبارسنجی شبکه و توسعه برنامه‌های غیرمتمرکز فراهم خواهد شد.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- تیکر اخبار پیشرفته -->
+    <div class="news">
+        <h3 class="news__header"><i class="fas fa-newspaper"></i> آخرین اخبار مالی</h3>
+        
+        <div class="news__item">
+            <span class="news__time">10:45</span>
+            <span><strong>توسعه پروژه IRX:</strong> فاز اول توسعه پلتفرم با موفقیت به پایان رسید.</span>
+        </div>
+        
+        <div class="news__item">
+            <span class="news__time">09:30</span>
+            <span><strong>همکاری‌های بین‌المللی:</strong> مذاکرات با چندین کشور برای پذیرش IRX در جریان است.</span>
+        </div>
+        
+        <div class="news__item">
+            <span class="news__time">08:15</span>
+            <span><strong>اقتصاد ایران:</strong> رشد چشمگیر صادرات غیرنفتی در سه ماهه اخیر.</span>
+        </div>
+        
+        <div class="news__item">
+            <span class="news__time">07:00</span>
+            <span><strong>فناوری بلاکچین:</strong> ایران در بین 10 کشور برتر جهان در توسعه فناوری بلاکچین قرار گرفت.</span>
+        </div>
+        
+        <div class="news__item">
+            <span class="news__time">06:30</span>
+            <span><strong>بازار ارز:</strong> نرخ دلار در بازار آزاد با کاهش 2 درصدی همراه شد.</span>
+        </div>
+    </div>
+    
+    <!-- دکمه بازگشت به بالا -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+    
+    <!-- فوتر -->
+    <footer class="footer">
+        <div class="footer__content">
+            <div class="footer__social">
+                <a href="#" class="footer__social-link" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+                <a href="#" class="footer__social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="footer__social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="footer__social-link" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="footer__social-link" aria-label="Github"><i class="fab fa-github"></i></a>
+            </div>
+            
+            <div class="footer__copyright">
+                © 2023 پروژه IRX - تمامی حقوق محفوظ است
+            </div>
+        </div>
+    </footer>
+    
+    <!-- نوتیفیکیشن -->
+    <div class="notification" id="notification">
+        <i class="fas fa-info-circle notification__icon"></i>
+        <span id="notificationMessage">پیام نوتیفیکیشن</span>
+    </div>
+    
+    <!-- اسکریپت‌های JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        // سیستم کش پیشرفته برای داده‌ها
+        class CacheSystem {
+            constructor() {
+                this.cache = {};
+                this.defaultTTL = 10000; // 10 ثانیه
+            }
+            
+            set(key, data, ttl = this.defaultTTL) {
+                this.cache[key] = {
+                    data: data,
+                    expires: Date.now() + ttl
+                };
+            }
+            
+            get(key) {
+                const item = this.cache[key];
+                if (!item) return null;
+                
+                if (Date.now() > item.expires) {
+                    delete this.cache[key];
+                    return null;
+                }
+                
+                return item.data;
+            }
+            
+            clear() {
+                this.cache = {};
+            }
+        }
+        
+        // سیستم نوتیفیکیشن
+        class NotificationSystem {
+            constructor() {
+                this.notification = document.getElementById('notification');
+                this.message = document.getElementById('notificationMessage');
+                this.timeout = null;
+            }
+            
+            show(message, type = 'info', duration = 3000) {
+                this.message.textContent = message;
+                this.notification.className = 'notification notification--visible';
+                
+                // حذف کلاس‌های قبلی
+                this.notification.classList.remove('notification--info', 'notification--success', 'notification--warning', 'notification--error');
+                
+                // اضافه کردن کلاس نوع نوتیفیکیشن
+                this.notification.classList.add(`notification--${type}`);
+                
+                // پاک کردن تایموت قبلی
+                if (this.timeout) clearTimeout(this.timeout);
+                
+                // تنظیم تایموت برای مخفی کردن
+                this.timeout = setTimeout(() => {
+                    this.hide();
+                }, duration);
+            }
+            
+            hide() {
+                this.notification.classList.remove('notification--visible');
+                this.notification.classList.add('notification--hidden');
+            }
+        }
+        
+        // سیستم مدیریت ارزهای دیجیتال
+        class CryptoManager {
+            constructor() {
+                this.cache = new CacheSystem();
+                this.notification = new NotificationSystem();
+                this.rialRate = 500000; // نرخ دلار به ریال
+                this.previousPrices = {
+                    bitcoin: { usd: 0, usd_24h_change: 0, market_cap: 0 },
+                    ethereum: { usd: 0, usd_24h_change: 0, market_cap: 0 },
+                    litecoin: { usd: 0, usd_24h_change: 0, market_cap: 0 },
+                    irx: { usd: 0, usd_24h_change: 0, market_cap: 0, status: 'در انتظار' }
+                };
+                
+                this.cryptoList = [
+                    { id: 'bitcoin', symbol: 'btc', name: 'بیت‌کوین', icon: 'https://cryptologos.cc/logos/bitcoin-btc-logo.png' },
+                    { id: 'ethereum', symbol: 'eth', name: 'اتریوم', icon: 'https://cryptologos.cc/logos/ethereum-eth-logo.png' },
+                    { id: 'litecoin', symbol: 'ltc', name: 'لایت‌کوین', icon: 'https://cryptologos.cc/logos/litecoin-ltc-logo.png' },
+                    { id: 'irx', symbol: 'irx', name: 'IRX', icon: '' }
+                ];
+                
+                this.charts = {
+                    btc: null,
+                    eth: null
+                };
+            }
+            
+            async fetchPrices() {
+                try {
+                    // استفاده از API Binance برای دریافت قیمت‌های لحظه‌ای
+                    const [btcResponse, ethResponse, ltcResponse] = await Promise.all([
+                        fetch('https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT'),
+                        fetch('https://api.binance.com/api/v3/ticker/24hr?symbol=ETHUSDT'),
+                        fetch('https://api.binance.com/api/v3/ticker/24hr?symbol=LTCUSDT')
+                    ]);
+                    
+                    const [btcData, ethData, ltcData] = await Promise.all([
+                        btcResponse.json(),
+                        ethResponse.json(),
+                        ltcResponse.json()
+                    ]);
+                    
+                    // پردازش داده‌های دریافتی
+                    const currentPrices = {
+                        bitcoin: { 
+                            usd: parseFloat(btcData.lastPrice),
+                            usd_24h_change: parseFloat(btcData.priceChangePercent),
+                            market_cap: parseFloat(btcData.lastPrice) * 19400000 // تقریبی
+                        },
+                        ethereum: { 
+                            usd: parseFloat(ethData.lastPrice),
+                            usd_24h_change: parseFloat(ethData.priceChangePercent),
+                            market_cap: parseFloat(ethData.lastPrice) * 120000000 // تقریبی
+                        },
+                        litecoin: { 
+                            usd: parseFloat(ltcData.lastPrice),
+                            usd_24h_change: parseFloat(ltcData.priceChangePercent),
+                            market_cap: parseFloat(ltcData.lastPrice) * 72000000 // تقریبی
+                        },
+                        irx: { 
+                            usd: 0,
+                            usd_24h_change: 0,
+                            market_cap: 0,
+                            status: 'در انتظار'
+                        }
+                    };
+                    
+                    // به‌روزرسانی کش
+                    this.cache.set('cryptoPrices', currentPrices);
+                    
+                    // به‌روزرسانی نمایش قیمت‌ها
+                    this.updatePrices(currentPrices);
+                    
+                } catch (error) {
+                    console.error('خطا در دریافت قیمت ارزها:', error);
+                    this.notification.show('خطا در دریافت قیمت‌ها از Binance. استفاده از داده‌های جایگزین', 'error');
+                    
+                    // استفاده از داده‌های جایگزین در صورت خطا
+                    const fallbackData = this.cache.get('cryptoPrices') || {
+                        bitcoin: {
+                            usd: 120000 + Math.random() * 5000,
+                            usd_24h_change: -2 + Math.random() * 4,
+                            market_cap: 2300000000000 + Math.random() * 100000000000
+                        },
+                        ethereum: {
+                            usd: 8500 + Math.random() * 300,
+                            usd_24h_change: -1.5 + Math.random() * 3,
+                            market_cap: 1020000000000 + Math.random() * 50000000000
+                        },
+                        litecoin: {
+                            usd: 350 + Math.random() * 20,
+                            usd_24h_change: -1 + Math.random() * 2,
+                            market_cap: 25000000000 + Math.random() * 1000000000
+                        },
+                        irx: {
+                            usd: 0,
+                            usd_24h_change: 0,
+                            market_cap: 0,
+                            status: 'در انتظار'
+                        }
+                    };
+                    
+                    this.updatePrices(fallbackData);
+                }
+            }
+            
+            updatePrices(currentPrices) {
+                // به‌روزرسانی ویجت‌های قیمت
+                this.updateCryptoPrice('btc', currentPrices.bitcoin, this.previousPrices.bitcoin);
+                this.updateCryptoPrice('eth', currentPrices.ethereum, this.previousPrices.ethereum);
+                this.updateCryptoPrice('ltc', currentPrices.litecoin, this.previousPrices.litecoin);
+                this.updateCryptoPrice('irx', currentPrices.irx, this.previousPrices.irx);
+                
+                // به‌روزرسانی جدول قیمت‌ها
+                this.updatePriceTable(currentPrices);
+                
+                // ذخیره قیمت‌های فعلی برای مقایسه بعدی
+                this.previousPrices = currentPrices;
+            }
+            
+            updateCryptoPrice(prefix, current, previous) {
+                const usdElement = document.getElementById(`${prefix}Usd`);
+                const changeElement = document.getElementById(`${prefix}Change`);
+                const rialElement = document.getElementById(`${prefix}Rial`);
+                
+                if (current.status === 'در انتظار') {
+                    if (changeElement) {
+                        changeElement.textContent = current.status;
+                        changeElement.className = 'crypto__change';
+                    }
+                    if (usdElement) usdElement.textContent = '-';
+                    if (rialElement) rialElement.textContent = '-';
+                    return;
+                }
+                
+                // قالب‌بندی قیمت
+                const formattedUsd = current.usd.toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: prefix === 'irx' ? 4 : 2
+                });
+                
+                // قالب‌بندی تغییرات
+                const change = current.usd_24h_change;
+                const changeFormatted = `${change > 0 ? '+' : ''}${change.toFixed(2)}%`;
+                
+                // محاسبه قیمت ریالی
+                const rialPrice = (current.usd * this.rialRate).toLocaleString('fa-IR');
+                
+                // اعمال تغییرات
+                if (usdElement) usdElement.textContent = formattedUsd;
+                if (changeElement) {
+                    changeElement.textContent = changeFormatted;
+                    changeElement.className = 'crypto__change';
+                    changeElement.classList.add(change > 0 ? 'crypto__change--positive' : 'crypto__change--negative');
+                }
+                if (rialElement) rialElement.textContent = `${rialPrice} ریال`;
+                
+                // انیمیشن تغییر قیمت
+                if (previous.usd > 0 && usdElement) {
+                    if (current.usd > previous.usd) {
+                        usdElement.style.color = 'var(--positive-color)';
+                        setTimeout(() => {
+                            usdElement.style.color = 'inherit';
+                        }, 1000);
+                    } else if (current.usd < previous.usd) {
+                        usdElement.style.color = 'var(--negative-color)';
+                        setTimeout(() => {
+                            usdElement.style.color = 'inherit';
+                        }, 1000);
+                    }
+                }
+            }
+            
+            updatePriceTable(prices) {
+                const tableBody = document.getElementById('cryptoTableBody');
+                let html = '';
+                
+                this.cryptoList.forEach(crypto => {
+                    const data = prices[crypto.id];
+                    
+                    if (data.status === 'در انتظار') {
+                        html += `
+                            <tr>
+                                <td>
+                                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                        ${crypto.icon ? `<img src="${crypto.icon}" alt="${crypto.name}" class="table__icon">` : `<i class="fas fa-star" style="color: var(--primary-color);"></i>`}
+                                        <span>${crypto.name}</span>
+                                    </div>
+                                </td>
+                                <td>-</td>
+                                <td>${data.status}</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                        `;
+                        return;
+                    }
+                    
+                    const change = data.usd_24h_change;
+                    const changeClass = change > 0 ? 'table__positive' : 'table__negative';
+                    const changeFormatted = `${change > 0 ? '+' : ''}${change.toFixed(2)}%`;
+                    const marketCap = (data.market_cap / 1000000000).toFixed(2) + 'B';
+                    const rialPrice = (data.usd * this.rialRate).toLocaleString('fa-IR');
+                    
+                    html += `
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                    ${crypto.icon ? `<img src="${crypto.icon}" alt="${crypto.name}" class="table__icon">` : `<i class="fas fa-star" style="color: var(--primary-color);"></i>`}
+                                    <span>${crypto.name}</span>
+                                </div>
+                            </td>
+                            <td>$${data.usd.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                            <td class="${changeClass}">${changeFormatted}</td>
+                            <td>${rialPrice} ریال</td>
+                            <td>$${marketCap}</td>
+                        </tr>
+                    `;
+                });
+                
+                tableBody.innerHTML = html;
+            }
+            
+            initCharts() {
+                // داده‌های نمونه برای نمودارها
+                const labels = Array.from({length: 24}, (_, i) => `${i}:00`);
+                const btcData = Array.from({length: 24}, () => 120000 + Math.random() * 5000);
+                const ethData = Array.from({length: 24}, () => 8500 + Math.random() * 300);
+                
+                // نمودار بیت‌کوین
+                const btcCtx = document.getElementById('btcChart').getContext('2d');
+                this.charts.btc = new Chart(btcCtx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'قیمت بیت‌کوین (USD)',
+                            data: btcData,
+                            borderColor: 'var(--primary-color)',
+                            backgroundColor: 'rgba(255, 215, 0, 0.1)',
+                            borderWidth: 2,
+                            tension: 0.4,
+                            fill: true,
+                            pointRadius: 0
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                mode: 'index',
+                                intersect: false,
+                                rtl: true,
+                                callbacks: {
+                                    label: function(context) {
+                                        return `قیمت: $${context.parsed.y.toLocaleString('en-US', {minimumFractionDigits: 2})}`;
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: false,
+                                grid: {
+                                    color: 'rgba(255, 255, 255, 0.1)'
+                                },
+                                ticks: {
+                                    color: 'var(--text-color)',
+                                    callback: function(value) {
+                                        return `$${value.toLocaleString('en-US')}`;
+                                    }
+                                }
+                            },
+                            x: {
+                                grid: {
+                                    color: 'rgba(255, 255, 255, 0.1)'
+                                },
+                                ticks: {
+                                    color: 'var(--text-color)'
+                                }
+                            }
+                        }
+                    }
+                });
+                
+                // نمودار اتریوم
+                const ethCtx = document.getElementById('ethChart').getContext('2d');
+                this.charts.eth = new Chart(ethCtx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'قیمت اتریوم (USD)',
+                            data: ethData,
+                            borderColor: '#627EEA',
+                            backgroundColor: 'rgba(98, 126, 234, 0.1)',
+                            borderWidth: 2,
+                            tension: 0.4,
+                            fill: true,
+                            pointRadius: 0
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                mode: 'index',
+                                intersect: false,
+                                rtl: true,
+                                callbacks: {
+                                    label: function(context) {
+                                        return `قیمت: $${context.parsed.y.toLocaleString('en-US', {minimumFractionDigits: 2})}`;
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: false,
+                                grid: {
+                                    color: 'rgba(255, 255, 255, 0.1)'
+                                },
+                                ticks: {
+                                    color: 'var(--text-color)',
+                                    callback: function(value) {
+                                        return `$${value.toLocaleString('en-US')}`;
+                                    }
+                                }
+                            },
+                            x: {
+                                grid: {
+                                    color: 'rgba(255, 255, 255, 0.1)'
+                                },
+                                ticks: {
+                                    color: 'var(--text-color)'
+                                }
+                            }
+                        }
+                    }
+                });
+                
+                // به‌روزرسانی نمودارها هر دقیقه
+                setInterval(() => {
+                    if (this.charts.btc) {
+                        this.charts.btc.data.datasets[0].data = this.charts.btc.data.datasets[0].data.slice(1).concat(120000 + Math.random() * 5000);
+                        this.charts.btc.update();
+                    }
+                    
+                    if (this.charts.eth) {
+                        this.charts.eth.data.datasets[0].data = this.charts.eth.data.datasets[0].data.slice(1).concat(8500 + Math.random() * 300);
+                        this.charts.eth.update();
+                    }
+                }, 60000);
+            }
+        }
+        
+        // سیستم مدیریت ساعت
+        class ClockManager {
+            constructor() {
+                this.hourHand = document.getElementById('hourHand');
+                this.minuteHand = document.getElementById('minuteHand');
+                this.secondHand = document.getElementById('secondHand');
+                this.digitalClock = document.getElementById('digitalClock');
+                
+                this.updateClock();
+                setInterval(() => this.updateClock(), 1000);
+            }
+            
+            updateClock() {
+                const now = new Date();
+                const hours = now.getHours();
+                const minutes = now.getMinutes();
+                const seconds = now.getSeconds();
+                
+                // ساعت آنالوگ
+                const hourDeg = (hours % 12) * 30 + (minutes / 2);
+                const minuteDeg = minutes * 6;
+                const secondDeg = seconds * 6;
+                
+                this.hourHand.style.transform = `rotate(${hourDeg}deg)`;
+                this.minuteHand.style.transform = `rotate(${minuteDeg}deg)`;
+                this.secondHand.style.transform = `rotate(${secondDeg}deg)`;
+                
+                // ساعت دیجیتال
+                const formattedTime = 
+                    `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                this.digitalClock.textContent = formattedTime;
+            }
+        }
+        
+        // سیستم مدیریت منو
+        class MenuManager {
+            constructor() {
+                this.menuToggle = document.getElementById('menuToggle');
+                this.mainMenu = document.getElementById('mainMenu');
+                
+                this.menuToggle.addEventListener('click', () => this.toggleMenu());
+                
+                // بستن منو با کلیک خارج از آن
+                document.addEventListener('click', (e) => {
+                    if (!this.mainMenu.contains(e.target) && !this.menuToggle.contains(e.target)) {
+                        this.closeMenu();
+                    }
+                });
+            }
+            
+            toggleMenu() {
+                this.menuToggle.classList.toggle('menu-toggle--active');
+                this.mainMenu.classList.toggle('main-menu--active');
+            }
+            
+            closeMenu() {
+                this.menuToggle.classList.remove('menu-toggle--active');
+                this.mainMenu.classList.remove('main-menu--active');
+            }
+        }
+        
+        // سیستم مدیریت اسکرول
+        class ScrollManager {
+            constructor() {
+                this.backToTop = document.getElementById('backToTop');
+                
+                window.addEventListener('scroll', () => this.handleScroll());
+                this.backToTop.addEventListener('click', () => this.scrollToTop());
+                
+                // اسکرول نرم برای لینک‌ها
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', (e) => this.handleAnchorClick(e, anchor));
+                });
+            }
+            
+            handleScroll() {
+                if (window.pageYOffset > 300) {
+                    this.backToTop.classList.add('back-to-top--visible');
+                } else {
+                    this.backToTop.classList.remove('back-to-top--visible');
+                }
+            }
+            
+            scrollToTop() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+            
+            handleAnchorClick(e, anchor) {
+                e.preventDefault();
+                
+                const targetId = anchor.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // بستن منو در حالت موبایل
+                    menuManager.closeMenu();
+                }
+            }
+        }
+        
+        // سیستم مدیریت آکاردئون
+        class AccordionManager {
+            constructor() {
+                document.querySelectorAll('.accordion__header').forEach(header => {
+                    header.addEventListener('click', () => {
+                        const item = header.parentElement;
+                        item.classList.toggle('accordion__item--active');
+                    });
+                });
+            }
+        }
+        
+        // سیستم مدیریت پیش‌بارگذاری
+        class PreloaderManager {
+            constructor() {
+                this.preloader = document.getElementById('preloader');
+                
+                window.addEventListener('load', () => {
+                    setTimeout(() => {
+                        this.preloader.classList.add('preloader--hidden');
+                    }, 1500);
+                });
+            }
+        }
+        
+        // سیستم مدیریت ذرات پس‌زمینه
+        class ParticlesManager {
+            constructor() {
+                particlesJS('particles-js', {
+                    "particles": {
+                        "number": {
+                            "value": 80,
+                            "density": {
+                                "enable": true,
+                                "value_area": 800
+                            }
+                        },
+                        "color": {
+                            "value": "#FFD700"
+                        },
+                        "shape": {
+                            "type": "circle",
+                            "stroke": {
+                                "width": 0,
+                                "color": "#000000"
+                            },
+                            "polygon": {
+                                "nb_sides": 5
+                            }
+                        },
+                        "opacity": {
+                            "value": 0.5,
+                            "random": true,
+                            "anim": {
+                                "enable": true,
+                                "speed": 1,
+                                "opacity_min": 0.1,
+                                "sync": false
+                            }
+                        },
+                        "size": {
+                            "value": 3,
+                            "random": true,
+                            "anim": {
+                                "enable": true,
+                                "speed": 2,
+                                "size_min": 0.1,
+                                "sync": false
+                            }
+                        },
+                        "line_linked": {
+                            "enable": true,
+                            "distance": 150,
+                            "color": "#FFD700",
+                            "opacity": 0.4,
+                            "width": 1
+                        },
+                        "move": {
+                            "enable": true,
+                            "speed": 1,
+                            "direction": "none",
+                            "random": true,
+                            "straight": false,
+                            "out_mode": "out",
+                            "bounce": false,
+                            "attract": {
+                                "enable": false,
+                                "rotateX": 600,
+                                "rotateY": 1200
+                            }
+                        }
+                    },
+                    "interactivity": {
+                        "detect_on": "canvas",
+                        "events": {
+                            "onhover": {
+                                "enable": true,
+                                "mode": "grab"
+                            },
+                            "onclick": {
+                                "enable": true,
+                                "mode": "push"
+                            },
+                            "resize": true
+                        },
+                        "modes": {
+                            "grab": {
+                                "distance": 140,
+                                "line_linked": {
+                                    "opacity": 1
+                                }
+                            },
+                            "bubble": {
+                                "distance": 400,
+                                "size": 40,
+                                "duration": 2,
+                                "opacity": 8,
+                                "speed": 3
+                            },
+                            "repulse": {
+                                "distance": 200,
+                                "duration": 0.4
+                            },
+                            "push": {
+                                "particles_nb": 4
+                            },
+                            "remove": {
+                                "particles_nb": 2
+                            }
+                        }
+                    },
+                    "retina_detect": true
+                });
+            }
+        }
+        
+        // سیستم مدیریت انیمیشن‌های اسکرول
+        class AnimationManager {
+            constructor() {
+                AOS.init({
+                    duration: 800,
+                    easing: 'ease-in-out',
+                    once: true,
+                    offset: 100
+                });
+            }
+        }
+        
+        // سیستم مدیریت اخبار
+        class NewsManager {
+            constructor() {
+                this.newsItems = [
+                    { time: "10:45", text: "<strong>توسعه پروژه IRX:</strong> فاز اول توسعه پلتفرم با موفقیت به پایان رسید." },
+                    { time: "09:30", text: "<strong>همکاری‌های بین‌المللی:</strong> مذاکرات با چندین کشور برای پذیرش IRX در جریان است." },
+                    { time: "08:15", text: "<strong>اقتصاد ایران:</strong> رشد چشمگیر صادرات غیرنفتی در سه ماهه اخیر." },
+                    { time: "07:00", text: "<strong>فناوری بلاکچین:</strong> ایران در بین 10 کشور برتر جهان در توسعه فناوری بلاکچین قرار گرفت." },
+                    { time: "06:30", text: "<strong>بازار ارز:</strong> نرخ دلار در بازار آزاد با کاهش 2 درصدی همراه شد." },
+                    { time: "05:45", text: "<strong>IRX:</strong> تست‌های امنیتی شبکه با موفقیت انجام شد." },
+                    { time: "04:20", text: "<strong>اقتصاد دیجیتال:</strong> رشد 35 درصدی استفاده از ارزهای دیجیتال در ایران." }
+                ];
+                
+                this.newsContainer = document.querySelector('.news');
+                this.renderNews();
+                this.startNewsRotation();
+            }
+            
+            renderNews() {
+                this.newsContainer.innerHTML = `
+                    <h3 class="news__header"><i class="fas fa-newspaper"></i> آخرین اخبار مالی</h3>
+                    ${this.newsItems.map(item => `
+                        <div class="news__item">
+                            <span class="news__time">${item.time}</span>
+                            <span>${item.text}</span>
+                        </div>
+                    `).join('')}
+                `;
+            }
+            
+            startNewsRotation() {
+                setInterval(() => {
+                    // جابجایی آیتم‌های خبری
+                    const firstItem = this.newsItems.shift();
+                    this.newsItems.push(firstItem);
+                    this.renderNews();
+                }, 10000); // هر 10 ثانیه
+            }
+        }
+        
+        // مقداردهی اولیه سیستم‌ها
+        const cryptoManager = new CryptoManager();
+        const clockManager = new ClockManager();
+        const menuManager = new MenuManager();
+        const scrollManager = new ScrollManager();
+        const accordionManager = new AccordionManager();
+        const preloaderManager = new PreloaderManager();
+        const particlesManager = new ParticlesManager();
+        const animationManager = new AnimationManager();
+        const newsManager = new NewsManager();
+        
+        // اولین فراخوانی و تنظیم تایمر برای به‌روزرسانی هر 10 ثانیه
+        cryptoManager.fetchPrices();
+        setInterval(() => cryptoManager.fetchPrices(), 10000);
+        
+        // بارگذاری اولیه نمودارها
+        window.addEventListener('load', () => {
+            cryptoManager.initCharts();
+        });
+    </script>
+</body>
+</html>
